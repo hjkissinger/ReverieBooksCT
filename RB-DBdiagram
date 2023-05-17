@@ -1,0 +1,65 @@
+Dbdiagram.io Relational Database build for Reverie Books CT:
+
+Table RB.InventoryAvail {
+  SKU int
+  Sold_Status varchar
+  Date_Sourced date
+  Price_Type varchar
+  Product_Type varchar
+  Blind_Date varchar
+  Material_Cost int
+  Raw_Material_Cost int
+  Shipping_Cost int
+  Date_Sold date
+  GenreID_Key varchar
+  Indexes {
+    (SKU, Sold_Status) [pk]
+  }
+}
+
+Table RB.InventorySold {
+  SKU int 
+  Sold_Status varchar
+  Date_Sourced date
+  Price_Type varchar
+  Product_Type varchar
+  Blind_Date varchar
+  Material_Cost int
+  Raw_Material_Cost int
+  Shipping_Cost int
+  Date_Sold date
+  GenreID_Key varchar
+  Indexes {
+    (SKU, Sold_Status) [pk]
+  }
+}
+
+Table RB.Dictionary {
+  GenreID_Key varchar
+  Title varchar
+  Author varchar
+  Year date
+  ISBN varchar
+  GR_Rating int
+  Indexes {
+    (GenreID_Key) [pk]
+  }
+}
+
+Table RB.Legend {
+  GenreID_Key_L varchar
+}
+
+Table RB.Metrics {
+  Avgs int
+  Countifs int
+  Sales_by_date int
+  Sales_by_author int
+  Sales_by_genre int
+  Sales_by_commerce int
+  Shelf_Length int
+  }
+
+Ref: RB.InventoryAvail.SKU - RB.InventorySold.SKU
+Ref: RB.Dictionary.GenreID_Key < RB.InventoryAvail.GenreID_Key
+Ref: RB.Dictionary.GenreID_Key < RB.InventorySold.GenreID_Key
